@@ -9,7 +9,7 @@ This is a study in building a podcast/text blog using React/TypeScript (via Vite
 * Lexical (Content Editor)
 * Netlify (Serverless host)
 
-## Reproduction Guide
+## Part I - Setup
 ### 1. Initial React installation
 \*_The following is from [Vite JS](https://vitejs.dev/guide)_\*
 1. Install React/TypeScript-flavored Vite
@@ -144,3 +144,38 @@ const Profile = () => {
 
 export default Profile;
 ```
+
+### 7. Fauna Installation
+Follow [this Auth0 guide](https://manage.auth0.com/dashboard/us/graced-is/marketplace/fauna-database)
+
+## Part II
+Create `./src/schema.gql` and paste the following:
+```
+type User {
+  id: ID!
+  name: String!
+  email: String!
+}
+
+type Post {
+  id: ID!
+  title: String!
+  body: String!
+  user: User!
+  createdAt: Time!
+}
+
+type Comment {
+  id: ID!
+  body: String!
+  post: Post!
+  createdAt: Time!
+}
+
+type Query {
+  allUsers: [User!]!
+  allPosts: [Post!]!
+}
+```
+
+Upload `schema.gql` to the Fauna Dashboard.

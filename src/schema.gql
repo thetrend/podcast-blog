@@ -1,0 +1,25 @@
+type User {
+  id: ID!
+  name: String!
+  email: String!
+}
+
+type Post {
+  id: ID!
+  title: String!
+  body: String!
+  user: User!
+  createdAt: Time!
+}
+
+type Comment {
+  id: ID!
+  body: String!
+  post: Post!
+  createdAt: Time!
+}
+
+type Query {
+  allUsers: [User!]!
+  allPosts: [Post!]!
+}
