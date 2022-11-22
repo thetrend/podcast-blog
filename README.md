@@ -84,9 +84,63 @@ Open `./src/index.css` and delete all the existing entries. Replace with the bel
 ```
 
 ### 6. Auth0 Installation
-\*_The following is from [this Auth0 guide](https://marketplace.auth0.com/integrations/netlify-role-management)._\*
-
 Go to [Auth0.com](https://auth0.com) and create an account. My personal preference is linking my Auth0 account to my GitHub account, but this is optional.
 
-Once you log in to the Dashboard, `+ Create Application`, name your application with your preferred project name, then select "Regular Web Application" as your application type.
+Once you log in to the Dashboard, `+ Create Application`, name your application with your preferred project name, then select "Single Page Application" as your application type.
 
+Navigate to "Quick Start" on your newly created application dashboard. The following steps are taken from the Quick Start guide.
+While in the Quick Start guide, add `http://localhost:8888` or whatever your local netlify server URL is so you can test the following locally.
+
+In your terminal:
+```
+$ npm install @auth0/auth0-react
+```
+
+Open `./main.tsx` and copy the `Auth0Provider` component snippet from the Quick Start guide, replacing `<App />` with the entire `<Auth0Provider>` code block.
+
+Create the following files and paste the related contents accordingly:
+
+1. `./src/Auth/LoginButton.tsx`
+```
+import { useAuth0 } from '@auth0/auth0-react';
+
+const LoginButton = () => {
+  const { loginWithRedirect } = useAuth0();
+
+  return <button onClick={() => loginWithRedirect()}>Login</button>;
+};
+
+export default LoginButton;
+```   
+2. `./src/Auth/LogoutButton.tsx`
+```
+import { useAuth0 } from '@auth0/auth0-react';
+
+const LogoutButton = () => {
+  const { logout } = useAuth0();
+
+  return <button onClick={() => logout({ returnTo: window.location.origin })}>Logout</button>;
+};
+
+export default LogoutButton;
+```
+3. `./src/Auth/Profile.tsx`
+```
+import { useAuth0 } from '@auth0/auth0-react';
+
+const Profile = () => {
+  const { user, isLoading } = useAuth0();
+
+  if (isLoading) {
+    return <>Loading...</>;
+  }
+
+  return (    
+      <div className="d-block">
+        {user!.name}
+      </div>
+  );
+};
+
+export default Profile;
+```

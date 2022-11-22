@@ -1,9 +1,22 @@
+import { useAuth0 } from '@auth0/auth0-react';
+import LoginButton from './Auth/LoginButton';
 import './App.css';
+import LogoutButton from './Auth/LogoutButton';
+import Profile from './Auth/Profile';
 
 const App = () => {
+  const { isLoading, isAuthenticated } = useAuth0();
   return (
     <>
-      <h1 className="text-5xl font-bold">Hello World</h1>
+      {isLoading ? 
+        'Loading...' 
+        : isAuthenticated ?
+          <>
+            <Profile />
+            <LogoutButton />
+          </>
+          : <LoginButton />
+      }
     </>
   );
 };
