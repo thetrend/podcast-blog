@@ -175,6 +175,8 @@ type Comment {
 type Query {
   allUsers: [User!]!
   allPosts: [Post!]!
+  post(id: ID!): Post!
+  comment(post: Post!): Comment!
 }
 ```
 
