@@ -22,17 +22,24 @@ $ cd <project-name>
 $ npm install
 ```
 
+### 2. IDE
+If you haven't already, open `./<project-name>` in your IDE, preferably Visual Studio Code. All files referenced from this point forward will be referenced under the assumption that you have this directory open.
 
-### 2. Netlify Installation
+
+### 3. Netlify Installation
 ```
 $ npm i -g netlify-cli (Optional if netlify-cli is already installed)
 $ netlify init
 $ netlify dev (to run the server)
 ```
 
-
-### 3. IDE
-If you haven't already, open `./<project_directory>` in your IDE, preferably Visual Studio Code. All files referenced from this point forward will be referenced under the assumption that you have this directory open.
+Uncomment the following lines in `netlify.toml`:
+```
+  [[redirects]]
+   from = "/*"
+   to = "/index.html"
+   status = 200
+```
 
 
 ### 4. Tailwind CSS Installation
@@ -77,3 +84,9 @@ Open `./src/index.css` and delete all the existing entries. Replace with the bel
 ```
 
 ### 6. Auth0 Installation
+\*_The following is from [this Auth0 guide](https://marketplace.auth0.com/integrations/netlify-role-management)._\*
+
+Go to [Auth0.com](https://auth0.com) and create an account. My personal preference is linking my Auth0 account to my GitHub account, but this is optional.
+
+Once you log in to the Dashboard, `+ Create Application`, name your application with your preferred project name, then select "Regular Web Application" as your application type.
+
