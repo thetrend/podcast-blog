@@ -20,11 +20,22 @@ $ npm create vite@latest <project-name>
 
 $ cd <project-name>
 $ npm install
-$ npm run dev
 ```
 
-### 2. Tailwind CSS Installation
 
+### 2. Netlify Installation
+```
+$ npm i -g netlify-cli (Optional if netlify-cli is already installed)
+$ netlify init
+$ netlify dev (to run the server)
+```
+
+
+### 3. IDE
+If you haven't already, open `./<project_directory>` in your IDE, preferably Visual Studio Code. All files referenced from this point forward will be referenced under the assumption that you have this directory open.
+
+
+### 4. Tailwind CSS Installation
 Open a new terminal inside your project directory
 
 \*_The following is from [Tailwind CSS](https://tailwindcss.com/docs/guides/vite)_\*
@@ -35,7 +46,7 @@ $ npm install -D tailwindcss postcss autoprefixer
 $ npx tailwindcss init -p
 ```
 
-Open `./<project_directory>/tailwind.config.cjs` in your IDE and add the following inside `module.exports > content: []`:
+Open `./tailwind.config.cjs` in your IDE and add the following inside `module.exports > content: []`:
 ```
 module.exports = {
   content: [
@@ -44,17 +55,25 @@ module.exports = {
   ],
 ```
 
-Open `./<project_directory>/src/index.css` and delete all the existing entries. Replace with the below:
+Open `./src/index.css` and delete all the existing entries. Replace with the below:
 ```
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 ```
 
-### 3. Boilerplate cleanup
-1. If you haven't already, open `./<project_directory>` in your IDE, preferably Visual Studio Code.
-2. Delete `./src/assets/react.svg`
-3. Delete everything inside `./src/App.css`
-4. Delete everything inside the `return ()` statement of `./src/App.tsx`
 
-### 4. Auth0 Installation
+### 5. Boilerplate cleanup
+1. Delete `./src/assets/react.svg`
+2. Delete everything inside `./src/App.css`
+3. Delete everything inside the `return ()` statement of `./src/App.tsx`
+4. Replace the `return ()` statement in `./src/App.tsx` with the following:
+```
+  return (
+    <>
+      <h1 className="text-5xl font-bold">Hello World</h1>
+    </>
+  );
+```
+
+### 6. Auth0 Installation
